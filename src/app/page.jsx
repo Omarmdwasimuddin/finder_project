@@ -1,15 +1,11 @@
+'use client';
 import Stats from './Component/Stats/Stats';
 import WorkSection from './Component/WorkSection/WorkSection';
 import HeroSection from './Component/HeroSection/HeroSection';
+import SectionWrapper from './Component/SectionWrapper/SectionWrapper';
 
 
-export const metadata = {
-  title: 'LifeSaver - Blood Donation Network',
-  description: 'Connect with blood donors and save lives in Bangladesh',
-  openGraph: {
-    images: '/opengraph-image.jpg',
-  },
-}
+
 
 export default function HomePage() {
   return (
@@ -24,6 +20,7 @@ export default function HomePage() {
       <WorkSection/>
 
       {/* Emergency Section */}
+      <SectionWrapper delay={0.4}>
       <section className="bg-red-50 py-16">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-6">Need Blood Urgently?</h2>
@@ -35,6 +32,7 @@ export default function HomePage() {
           </button>
         </div>
       </section>
+      </SectionWrapper>
     </main>
   );
 }

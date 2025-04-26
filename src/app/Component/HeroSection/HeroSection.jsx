@@ -1,11 +1,16 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 const HeroSection = () => {
     const [displayText, setDisplayText] = useState('');
     const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
     const [isTyping, setIsTyping] = useState(true);
+    const [bloodType, setBloodType] = useState('');
+    const [district, setDistrict] = useState('');
+    const [cityArea, setCityArea] = useState('');
+    const [cityAreas, setCityAreas] = useState([]);
+    const [isMounted, setIsMounted] = useState(false);
     
     const messages = [
         "Donate Blood, Save Lives",
@@ -14,29 +19,89 @@ const HeroSection = () => {
         "One Pint Can Save Three Lives"
     ];
 
+    const areaData = [
+        {
+            district: "Dhaka",
+            cityAreas: ["Mirpur", "Uttara", "Dhanmondi", "Banani", "Gulshan", "Motijheel", "Mohammadpur", "Badda", "Lalbagh", "Shyamoli"]
+        },
+        {
+            district: "Chattogram",
+            cityAreas: ["Pahartali", "Agrabad", "Panchlaish", "Chawkbazar", "Kotwali", "Halishahar", "Bakalia", "Patenga", "Nasirabad"]
+        },
+        {
+            district: "Sylhet",
+            cityAreas: ["Zindabazar", "Ambarkhana", "Dargah Gate", "Shibgonj", "Tilagor", "Subid Bazar", "South Surma", "Uposhohor"]
+        },
+        {
+            district: "Khulna",
+            cityAreas: ["KDA Avenue", "Sonadanga", "Khalishpur", "Daulatpur", "Boyra", "Shibbari", "Rupsha", "Khalishpur"]
+        },
+        {
+            district: "Rajshahi",
+            cityAreas: ["Shaheb Bazar", "Motihar", "Binodpur", "Uposhohor", "Rajpara", "Boalia", "Nowhata", "Laxmipur"]
+        },
+        {
+            district: "Barishal",
+            cityAreas: ["Nathullabad", "Chawkbazar", "Rupatoli", "Kazipara", "Amtala", "Notun Bazar"]
+        },
+        {
+            district: "Rangpur",
+            cityAreas: ["Station Road", "College Para", "Medical", "Kachari Bazar", "Kadirganj", "Modern More"]
+        },
+        {
+            district: "Mymensingh",
+            cityAreas: ["Chorpara", "Kewatkhali", "Shambhuganj", "Biddyaganj"]
+        }
+    ];
+
+    const bloodDrops = useMemo(() => {
+        return Array(8).fill().map((_, i) => {
+            const seed = i * 123.456;
+            const top = 10 + (Math.sin(seed) * 80);
+            const left = 10 + (Math.cos(seed) * 80);
+            const width = 8 + (Math.abs(Math.sin(seed * 2)) * 5);
+            const height = 16 + (Math.abs(Math.cos(seed * 3)) * 9);
+            const bgColor = 100 + Math.floor(Math.abs(Math.sin(seed)) * 2) * 100;
+            const opacity = 10 + Math.floor(Math.abs(Math.sin(seed * 4))) * 15;
+            const animationDuration = 5 + (Math.abs(Math.sin(seed * 5)) * 5);
+            const animationDelay = Math.abs(Math.sin(seed * 7)) * 4;
+
+            return {
+                top: `${top}%`,
+                left: `${left}%`,
+                width: Math.round(width),
+                height: Math.round(height),
+                bgColor: `red-${Math.min(900, bgColor)}`,
+                opacity: Math.min(100, opacity),
+                animationDuration: `${animationDuration.toFixed(1)}s`,
+                animationDelay: `${animationDelay.toFixed(1)}s`
+            };
+        });
+    }, []);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
     useEffect(() => {
         let timeout;
         
         if (isTyping) {
-            // Typing effect
             if (displayText.length < messages[currentMessageIndex].length) {
                 timeout = setTimeout(() => {
                     setDisplayText(messages[currentMessageIndex].substring(0, displayText.length + 1));
-                }, 100); // Typing speed
+                }, 100);
             } else {
-                // Pause after typing complete
                 timeout = setTimeout(() => {
                     setIsTyping(false);
-                }, 2000); // Pause duration
+                }, 2000);
             }
         } else {
-            // Deleting effect
             if (displayText.length > 0) {
                 timeout = setTimeout(() => {
                     setDisplayText(displayText.substring(0, displayText.length - 1));
-                }, 50); // Deleting speed
+                }, 50);
             } else {
-                // Move to next message
                 setCurrentMessageIndex((prev) => (prev + 1) % messages.length);
                 setIsTyping(true);
             }
@@ -45,23 +110,56 @@ const HeroSection = () => {
         return () => clearTimeout(timeout);
     }, [displayText, currentMessageIndex, isTyping, messages]);
 
+    const handleDistrictChange = (e) => {
+        const selectedDistrict = e.target.value;
+        setDistrict(selectedDistrict);
+        setCityArea('');
+        const selectedCityAreas = areaData.find(area => area.district === selectedDistrict)?.cityAreas || [];
+        setCityAreas(selectedCityAreas);
+    };
+
     return (
-        <section className="bg-gray-100 text-red-600 py-16 md:py-24">
-            <div className="container mx-auto px-4 sm:px-6 text-center">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 min-h-[72px]">
+        <section className="relative overflow-hidden bg-gradient-to-br from-red-50 to-red-100 text-red-600 py-16 md:py-24">
+            {isMounted && (
+                <div className="absolute inset-0 overflow-hidden">
+                    {bloodDrops.map((drop, i) => (
+                        <div 
+                            key={i}
+                            className={`absolute w-${drop.width} h-${drop.height} bg-${drop.bgColor} rounded-full opacity-${drop.opacity}`}
+                            style={{
+                                top: drop.top,
+                                left: drop.left,
+                                animation: `float ${drop.animationDuration} ease-in-out infinite`,
+                                animationDelay: drop.animationDelay
+                            }}
+                        ></div>
+                    ))}
+                    
+                    <div className="absolute top-1/4 left-1/3 transform -translate-x-1/2 -translate-y-1/2">
+                        <div className="heartbeat"></div>
+                    </div>
+                    
+                    <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNGRjAwMDAiIG9wYWNpdHk9Ii4yIj48cGF0aCBkPSJNMjEgMzkuNjNjMTEuMDQ1LTIuNTI3IDE5LTExLjkwOCAxOS0yMy4wNEM0MCA3LjI4IDMxLjA0NS0yLjUyNyAyMC0uMDFDMTAuOTU1LTIuNTI3IDIgNy4yOCAyIDE2LjU5YzAgMTEuMTMyIDcuOTU1IDIwLjUxMyAxOSAyMy4wNHoiLz48L2c+PC9nPjwvc3ZnPg==')]"></div>
+                </div>
+            )}
+
+            <div className="container relative z-10 mx-auto px-4 sm:px-6 text-center">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 min-h-[72px] drop-shadow-sm">
                     {displayText}
-                    <span className="animate-pulse">...|</span> {/* Cursor */}
+                    <span className="animate-pulse">|</span>
                 </h1>
-                <p className="text-sm text-red-400 md:text-xl mb-8 max-w-2xl mx-auto">
+                <p className="text-xs text-red-500 md:text-xl mb-8 max-w-2xl mx-auto font-medium">
                     Join our network of blood donors and help patients in emergency situations across Bangladesh
                 </p>
-                
-                <div className="flex flex-col md:flex-row gap-4 justify-center max-w-2xl mx-auto">
+
+                <div className="flex flex-col md:flex-row gap-4 justify-center max-w-2xl mx-auto bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg">
                     <div className="relative flex-grow">
-                        <select 
-                            className="w-full p-3 md:p-4 rounded-lg border-2 border-red-200 outline-2 outline-offset-2 outline-red-200 focus:border-red-400 focus:ring-2 focus:ring-red-200 appearance-none shadow-sm"
+                        <select
+                            className="w-full text-sm p-3 md:p-4 rounded-lg border-2 border-red-200 focus:border-red-400 focus:ring-2 focus:ring-red-200 appearance-none shadow-sm bg-white"
+                            value={bloodType}
+                            onChange={(e) => setBloodType(e.target.value)}
                         >
-                            <option value="">Select Blood Type</option>
+                            <option value="">Blood Group</option>
                             <option value="A+">A+</option>
                             <option value="A-">A-</option>
                             <option value="B+">B+</option>
@@ -71,10 +169,42 @@ const HeroSection = () => {
                             <option value="O+">O+</option>
                             <option value="O-">O-</option>
                         </select>
-                        <FaSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-500" />
+                        
                     </div>
-                    <button 
-                        className="bg-red-600 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-lg hover:bg-red-700 transition duration-300 shadow-md hover:shadow-lg"
+
+                    <div className="relative flex-grow">
+                        <select
+                            className="w-full p-3 md:p-4 rounded-lg border-2 border-red-200 focus:border-red-400 focus:ring-2 focus:ring-red-200 appearance-none shadow-sm bg-white"
+                            value={district}
+                            onChange={handleDistrictChange}
+                        >
+                            <option value="">Select District</option>
+                            {areaData.map((area, index) => (
+                                <option key={index} value={area.district}>
+                                    {area.district}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="relative flex-grow">
+                        <select
+                            className="w-full text-sm p-3 md:p-4 rounded-lg border-2 border-red-200 focus:border-red-400 focus:ring-2 focus:ring-red-200 appearance-none shadow-sm bg-white"
+                            value={cityArea}
+                            onChange={(e) => setCityArea(e.target.value)}
+                            disabled={!district}
+                        >
+                            <option value="">Select City Area</option>
+                            {cityAreas.map((area, index) => (
+                                <option key={index} value={area}>
+                                    {area}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <button
+                        className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-lg transition duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
                     >
                         Find Donors
                     </button>
@@ -85,57 +215,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
-
-
-
-
-
-
-
-
-
-/* 
-
-import React from 'react';
-import { FaSearch } from 'react-icons/fa';
-const HeroSection = () => {
-    return (
-        <div>
-        <section className="bg-gray-300 text-red-600 py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Donate Blood, Save Lives
-          </h1>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join our network of blood donors and help patients in emergency situations across Bangladesh
-          </p>
-          
-          <div className="flex flex-col md:flex-row gap-4 justify-center max-w-2xl mx-auto">
-            <div className="relative flex-grow">
-              <select className="w-full p-4 rounded-lg outline-2 outline-red-400/30 outline-offset-5 outline-solid appearance-none shadow-sm">
-                <option>Select Blood Type</option>
-                <option>A+</option>
-                <option>A-</option>
-                <option>B+</option>
-                <option>B-</option>
-                <option>AB+</option>
-                <option>AB-</option>
-                <option>O+</option>
-                <option>O-</option>
-              </select>
-              <FaSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-500" />
-            </div>
-            <button className="bg-white text-red-600 font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition">
-              Find Donors
-            </button>
-          </div>
-        </div>
-      </section>
-        </div>
-    );
-};
-
-export default HeroSection;
-
-*/
