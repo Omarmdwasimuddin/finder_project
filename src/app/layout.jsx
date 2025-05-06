@@ -4,13 +4,13 @@ import Footer from "./Component/Footer/Footer";
 
 
 
-export const metadata = {
-  title: 'LifeSaver - Blood Donation Network',
-  description: 'Connect with blood donors and save lives in Bangladesh',
-  openGraph: {
-    images: '/opengraph-image.jpg',
-  },
+export const generateMetadata = () => {
+    return {
+        title: "Home",
+        description: "This is the home page of the application."
+    };
 };
+
 
 export default function RootLayout({ children }) {
   return (
