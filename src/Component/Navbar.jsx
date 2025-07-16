@@ -25,13 +25,15 @@ export default function NavHeader() {
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setHoveredMenu(null);
-    }, 1000); // 1 seconds delay
+    }, 1000);
   };
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Plasma', href: '/plasma',
-       dropdown: [
+    {
+      name: 'Plasma',
+      href: '/plasma',
+      dropdown: [
         { name: 'What is Plasma', href: '/plasma' },
         { name: 'Who can donate plasma', href: '/plasma' },
         { name: 'Where to donate plasma', href: '/plasma' },
@@ -39,7 +41,8 @@ export default function NavHeader() {
         { name: 'change to plasma donation', href: '/plasma' },
         { name: 'Why we need plasma donors', href: '/plasma' },
         { name: 'The journey of plasma', href: '/plasma' }
-      ] },
+      ]
+    },
     { name: 'Stem cells', href: '/stem-cells', dropdown: [{ name: 'Info', href: '/stem-cells' }] },
     { name: 'Why give blood', href: '/why-give-blood', dropdown: [{ name: 'Benefits', href: '/why-give-blood' }] },
     {
@@ -73,7 +76,7 @@ export default function NavHeader() {
   ];
 
   const dropdownBase = isScrolled ? 'bg-red-700 text-white' : 'bg-white text-red-700';
-  const dropdownHover = isScrolled ? 'hover:bg-red-600' : 'hover:bg-red-50';
+  const dropdownHover = isScrolled ? 'hover:bg-red-600' : 'hover:bg-red-200';
 
   return (
     <nav
@@ -94,7 +97,8 @@ export default function NavHeader() {
               <span>Home</span>
             </Link>
 
-            <div className="hidden md:flex space-x-4 text-sm font-medium">
+            {/* Desktop Menu (visible from lg and up) */}
+            <div className="hidden lg:flex space-x-4 text-sm font-medium">
               {navItems.slice(1).map((item) => (
                 <div
                   key={item.name}
@@ -104,9 +108,7 @@ export default function NavHeader() {
                 >
                   <button
                     className={`px-3 py-2 rounded transition-colors ${
-                      isScrolled
-                        ? 'text-red-700 hover:bg-red-100'
-                        : 'text-white hover:bg-red-600'
+                      isScrolled ? 'text-red-700 hover:bg-red-100' : 'text-white hover:bg-red-600'
                     }`}
                   >
                     {item.name}
@@ -130,20 +132,20 @@ export default function NavHeader() {
             </div>
           </div>
 
-          {/* Mobile toggle button */}
+          {/* Toggle button for mobile and md devices */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden ${isScrolled ? 'text-red-700' : 'text-white'} hover:text-red-500`}
+            className={`lg:hidden ${isScrolled ? 'text-red-700' : 'text-white'} hover:text-red-500`}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu (shown until lg) */}
       {mobileMenuOpen && (
         <div
-          className={`md:hidden px-4 py-2 space-y-2 ${
+          className={`lg:hidden px-4 py-2 space-y-2 ${
             isScrolled ? 'bg-white text-red-700' : 'bg-red-600 text-white'
           }`}
         >
