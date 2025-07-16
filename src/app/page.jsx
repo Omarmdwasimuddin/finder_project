@@ -1,15 +1,16 @@
 'use client';
-import Stats from './Component/Stats/Stats';
-import WorkSection from './Component/WorkSection/WorkSection';
-import HeroSection from './Component/HeroSection/HeroSection';
-import SectionWrapper from './Component/SectionWrapper/SectionWrapper';
+import Stats from '../Component/Stats';
+import WorkSection from '../Component/WorkSection';
+import HeroSection from '../Component/HeroSection';
+import SectionWrapper from '../Component/SectionWrapper';
+import PlainLayout from '@/Component/Plain-Layout';
 
 
 
 
 export default function HomePage() {
   return (
-    <main>
+    <PlainLayout>
       {/* Hero Section */}
       <HeroSection/>
 
@@ -33,6 +34,6 @@ export default function HomePage() {
         </div>
       </section>
       </SectionWrapper>
-    </main>
+    </PlainLayout>
   );
 }
