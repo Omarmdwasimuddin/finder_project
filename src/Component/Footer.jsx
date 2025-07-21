@@ -44,7 +44,7 @@ const Footer = () => {
                         <li><a href="/" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">Find Donors</a></li>
                         <li><a href="/where-to-donate/centers" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">Donation Centers</a></li>
                         <li><a href="/eligibility/can-i-give-blood" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">Eligibility</a></li>
-                        <li><a href="/about" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">About Us</a></li>
+                        <li><a href="/About" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">About Us</a></li>
                     </ul>
                 </div>
 

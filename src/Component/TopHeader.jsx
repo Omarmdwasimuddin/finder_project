@@ -10,7 +10,7 @@ export default function TopHeader() {
 
   // Navigation items
   const navItems = [
-    { name: 'Who we are', href: '/about' },
+    { name: 'Who we are', href: '/About' },
     { name: 'What we do', href: '/services' },
     { name: 'How we help', href: '/help' },
     { name: 'How you can help', href: '/get-involved' }
