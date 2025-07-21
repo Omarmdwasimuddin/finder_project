@@ -41,9 +41,9 @@ const Footer = () => {
                 <div className="space-y-3 px-2">
                     <h3 className="text-lg font-semibold text-gray-900">Quick Links</h3>
                     <ul className="space-y-2">
-                        <li><a href="#" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">Find Donors</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">Donation Centers</a></li>
-                        <li><a href="#" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">Eligibility</a></li>
+                        <li><a href="/" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">Find Donors</a></li>
+                        <li><a href="/where-to-donate/centers" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">Donation Centers</a></li>
+                        <li><a href="/eligibility/can-i-give-blood" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">Eligibility</a></li>
                         <li><a href="/about" className="text-gray-600 hover:text-red-500 transition-colors text-sm block py-1">About Us</a></li>
                     </ul>
                 </div>
