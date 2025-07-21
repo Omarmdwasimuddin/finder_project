@@ -35,44 +35,63 @@ export default function NavHeader() {
       href: '/plasma',
       dropdown: [
         { name: 'What is Plasma', href: '/plasma' },
-        { name: 'Who can donate plasma', href: '/plasma' },
-        { name: 'Where to donate plasma', href: '/plasma' },
-        { name: 'How to donate plasma', href: '/plasma' },
-        { name: 'change to plasma donation', href: '/plasma' },
-        { name: 'Why we need plasma donors', href: '/plasma' },
-        { name: 'The journey of plasma', href: '/plasma' }
+        { name: 'Who can donate plasma', href: '/plasma/who-can-donate-plasma' },
+        { name: 'Where to donate plasma', href: '/plasma/where-to-donate-plasma' },
+        { name: 'How to donate plasma', href: '/plasma/how-to-donate-plasma' },
+        { name: 'change to plasma donation', href: '/plasma/change-to-plasma-donation' },
+        { name: 'Why we need plasma donors', href: '/plasma/why-we-need-plasma-donors' },
+        { name: 'The journey of plasma', href: '/plasma/the-journey-of-plasma' }
       ]
     },
-    { name: 'Stem cells', href: '/stem-cells', dropdown: [{ name: 'Info', href: '/stem-cells' }] },
-    { name: 'Why give blood', href: '/why-give-blood', dropdown: [{ name: 'Benefits', href: '/why-give-blood' }] },
+    { name: 'Stem cells', href: '/stem-cells', 
+      dropdown: [
+        { name: 'Stem cells', href: '/stem-cells' },
+        { name: 'About stem cells', href: '/stem-cells/about-stem-cells' },
+        { name: 'Donation stem cells', href: '/stem-cells/donation-stem-cells' },
+        { name: 'Joining the register', href: '/stem-cells/joining-the-register' },
+        { name: 'Matching process', href: '/stem-cells/matching-process' }
+      ] },
+    { name: 'Why give blood', href: '/why-give-blood', 
+      dropdown: [
+        { name: 'Why give blood', href: '/why-give-blood' },
+        { name: 'Demand for different blood type', href: '/why-give-blood/demand-for-different-blood-type' },
+        { name: 'Blood type', href: '/why-give-blood/blood-type' },
+        { name: 'How blood is used', href: '/why-give-blood/how-blood-is-used' },
+        { name: 'Who you could help', href: '/why-give-blood/who-you-could-help' }
+      ] },
     {
       name: 'Who can give blood',
       dropdown: [
-        { name: 'Eligibility', href: '/eligibility' },
-        { name: 'Requirements', href: '/requirements' }
+        { name: 'Who can give blood', href: '/eligibility' },
+        { name: 'Can I give blood?', href: '/eligibility/can-i-give-blood' },
+        { name: 'Getting an appointment', href: '/eligibility/getting-an-appointment' },
+        { name: 'Health and Eligibility', href: '/eligibility/health-and-eligibility' },
+        { name: 'Travel considerations', href: '/eligibility/travel-considerations' },
+        { name: 'Occupation considerations', href: '/eligibility/occupation-considerations' },
+        { name: 'Donors and disability', href: '/eligibility/donors-and-disability' }
       ]
     },
     {
       name: 'The donation process',
       dropdown: [
-        { name: 'Step-by-step', href: '/step-by-step' },
-        { name: 'Preparation', href: '/preparation' }
+        { name: 'The donation process', href: '/donation-process' },
+        { name: 'Giving blood for the first time', href: '/donation-process/first-time-donors' },
+        { name: 'Registering online', href: '/donation-process/register-online' },
+        { name: 'Preparing to give blood', href: '/donation-process/prepare-to-donate' },
+        { name: 'What happens on tha day', href: '/donation-process/donation-day' },
+        { name: 'After your donation', href: '/donation-process/after-donation' },
+        { name: 'About our donation venues', href: '/donation-process/donation-venues' },
+        { name: 'Children at donation venues', href: '/donation-process/children-at-venues' },
+        { name: 'Further information', href: '/donation-process/donation-faq' },
+        { name: 'Recognising donors', href: '/donation-process/donor-recognition' },
       ]
     },
-    {
-      name: 'Where to donate',
+    {name: 'Where to donate',
       dropdown: [
-        { name: 'Centers', href: '/centers' },
-        { name: 'Map view', href: '/map' }
+        { name: 'Centers', href: '/where-to-donate/centers' },
+        { name: 'Map view', href: '/where-to-donate/map' }
       ]
     },
-    {
-      name: 'News and campaigns',
-      dropdown: [
-        { name: 'News', href: '/news' },
-        { name: 'Campaigns', href: '/campaigns' }
-      ]
-    }
   ];
 
   const dropdownBase = isScrolled ? 'bg-red-700 text-white' : 'bg-white text-red-700';

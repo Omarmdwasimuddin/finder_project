@@ -1,15 +1,9 @@
-// app/components/StatsSection.jsx
 'use client';
 
 import { useState, useEffect } from 'react';
 import { FaHeartbeat, FaUsers, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
-// Mock API call function - replace with your actual API call
 const fetchStats = async () => {
-  // In a real app, this would be:
-  // const res = await fetch('/api/stats');
-  // return await res.json();
-  
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
@@ -18,7 +12,7 @@ const fetchStats = async () => {
         monthlyDonations: 584,
         districtsCovered: 64
       });
-    }, 500); // Simulate network delay
+    }, 500);
   });
 };
 
@@ -36,8 +30,6 @@ const StatsSection = () => {
       try {
         const data = await fetchStats();
         setStats(data);
-        
-        // Animate counting up
         animateNumbers(data);
       } catch (error) {
         console.error('Failed to load stats:', error);
@@ -50,27 +42,27 @@ const StatsSection = () => {
   }, []);
 
   const animateNumbers = (targetStats) => {
-    const duration = 2000; // Animation duration in ms
-    const frameDuration = 1000 / 60; // 60fps
+    const duration = 2000;
+    const frameDuration = 1000 / 60;
     const totalFrames = Math.round(duration / frameDuration);
-    
+
     Object.keys(targetStats).forEach(key => {
       const target = targetStats[key];
       const start = 0;
       const increment = (target - start) / totalFrames;
-      
+
       let current = start;
       let frame = 0;
-      
+
       const counter = setInterval(() => {
         frame++;
         current = Math.min(current + increment, target);
-        
+
         setStats(prev => ({
           ...prev,
           [key]: Math.floor(current)
         }));
-        
+
         if (frame === totalFrames) {
           clearInterval(counter);
           setStats(prev => ({
@@ -83,43 +75,53 @@ const StatsSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <section className="py-16 bg-red-100">
+      <div className="container mx-auto px-4">
+        {/* Heading */}
+        <div className="text-center mb-4">
+          <h2 className="text-3xl font-bold text-gray-800">Our Impact in Numbers</h2>
+          <p className="text-gray-600 text-sm mt-2">See how your donations make a difference</p>
+        </div>
+
+        {/* Connecting Border */}
+        <div className="w-24 h-1 bg-red-500 mx-auto mb-10 rounded"></div>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {/* Lives Saved */}
-          <div className="p-6">
-            <FaHeartbeat className="text-red-500 text-4xl mx-auto mb-4" />
-            <h3 className="text-3xl font-bold text-gray-800">
+          <div className="p-4 border border-red-200 rounded-md bg-white shadow-sm">
+            <FaHeartbeat className="text-red-500 text-3xl mx-auto mb-3" />
+            <h3 className="text-2xl font-semibold text-gray-800">
               {loading ? '...' : stats.livesSaved.toLocaleString()}+
             </h3>
-            <p className="text-gray-600">Lives Saved</p>
+            <p className="text-sm text-gray-600">Lives Saved</p>
           </div>
-          
+
           {/* Active Donors */}
-          <div className="p-6">
-            <FaUsers className="text-red-500 text-4xl mx-auto mb-4" />
-            <h3 className="text-3xl font-bold text-gray-800">
+          <div className="p-4 border border-red-200 rounded-md bg-white shadow-sm">
+            <FaUsers className="text-red-500 text-3xl mx-auto mb-3" />
+            <h3 className="text-2xl font-semibold text-gray-800">
               {loading ? '...' : stats.activeDonors.toLocaleString()}+
             </h3>
-            <p className="text-gray-600">Active Donors</p>
+            <p className="text-sm text-gray-600">Active Donors</p>
           </div>
-          
+
           {/* Monthly Donations */}
-          <div className="p-6">
-            <FaCalendarAlt className="text-red-500 text-4xl mx-auto mb-4" />
-            <h3 className="text-3xl font-bold text-gray-800">
+          <div className="p-4 border border-red-200 rounded-md bg-white shadow-sm">
+            <FaCalendarAlt className="text-red-500 text-3xl mx-auto mb-3" />
+            <h3 className="text-2xl font-semibold text-gray-800">
               {loading ? '...' : stats.monthlyDonations.toLocaleString()}+
             </h3>
-            <p className="text-gray-600">Monthly Donations</p>
+            <p className="text-sm text-gray-600">Monthly Donations</p>
           </div>
-          
+
           {/* Districts Covered */}
-          <div className="p-6">
-            <FaMapMarkerAlt className="text-red-500 text-4xl mx-auto mb-4" />
-            <h3 className="text-3xl font-bold text-gray-800">
+          <div className="p-4 border border-red-200 rounded-md bg-white shadow-sm">
+            <FaMapMarkerAlt className="text-red-500 text-3xl mx-auto mb-3" />
+            <h3 className="text-2xl font-semibold text-gray-800">
               {loading ? '...' : stats.districtsCovered}
             </h3>
-            <p className="text-gray-600">Districts Covered</p>
+            <p className="text-sm text-gray-600">Districts Covered</p>
           </div>
         </div>
       </div>
@@ -128,59 +130,3 @@ const StatsSection = () => {
 };
 
 export default StatsSection;
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-import React from 'react';
-import {  FaHeartbeat, FaUsers, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
-const Stats = () => {
-    return (
-        <div>
-            
-            
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="p-6">
-              <FaHeartbeat className="text-red-500 text-4xl mx-auto mb-4" />
-              <h3 className="text-3xl font-bold text-gray-800">10,000+</h3>
-              <p className="text-gray-600">Lives Saved</p>
-            </div>
-            <div className="p-6">
-              <FaUsers className="text-red-500 text-4xl mx-auto mb-4" />
-              <h3 className="text-3xl font-bold text-gray-800">5,000+</h3>
-              <p className="text-gray-600">Active Donors</p>
-            </div>
-            <div className="p-6">
-              <FaCalendarAlt className="text-red-500 text-4xl mx-auto mb-4" />
-              <h3 className="text-3xl font-bold text-gray-800">500+</h3>
-              <p className="text-gray-600">Monthly Donations</p>
-            </div>
-            <div className="p-6">
-              <FaMapMarkerAlt className="text-red-500 text-4xl mx-auto mb-4" />
-              <h3 className="text-3xl font-bold text-gray-800">64</h3>
-              <p className="text-gray-600">Districts Covered</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-        </div>
-    );
-};
-
-export default Stats;
-*/
