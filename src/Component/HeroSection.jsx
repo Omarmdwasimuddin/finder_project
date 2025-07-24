@@ -92,7 +92,7 @@ const HeroSection = () => {
             ></motion.div>
 
             <Link
-              href="/signup"
+              href="/donor/signup"
               className="relative px-8 py-4 text-white text-sm font-semibold rounded-full bg-red-600 shadow-lg transition-all duration-300 hover:scale-105 z-10"
             >
               Sign Up to Donate
