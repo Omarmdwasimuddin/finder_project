@@ -48,7 +48,7 @@ export default function MidHeader() {
           {/* Login Link with Icon */}
           <div className="w-full sm:w-auto flex justify-center sm:justify-end order-2 sm:order-none ml-0 sm:ml-2 md:ml-6">
             <Link
-              href="/login"
+              href="/donor/login"
               className="inline-flex items-center space-x-2 text-sm font-medium text-red-600 hover:text-red-700 focus:outline-none transition-colors whitespace-nowrap"
             >
               <LogIn className="w-5 h-5 text-red-600" />

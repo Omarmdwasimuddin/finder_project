@@ -33,4 +33,18 @@ model Donor {
   otp String?
   otpExpires DateTime?
   createdAt DateTime @default(now())
+  donationHistories DonationHistory[]
+}
+
+
+model DonationHistory {
+  id           Int      @id @default(autoincrement())
+  donorId      Int
+  patientName  String
+  hospitalName String
+  donationDate DateTime
+  note         String?
+  createdAt    DateTime @default(now())
+
+  donor Donor @relation(fields: [donorId], references: [id], onDelete:  Restrict, onUpdate: Cascade)
 }
