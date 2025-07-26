@@ -12,8 +12,7 @@ export default function Sidebar() {
     { name: "Dashboard", href: "/dashboard" },
     { name: "Profile", href: "/dashboard/profile" },
     { name: "Donation History", href: "/dashboard/history" },
-    { name: "Nearby Requests", href: "/dashboard/requests" },
-    { name: "Settings", href: "/dashboard/settings" },
+    { name: "Settings", href: "/dashboard/settings" }
   ];
 
   return (

@@ -27,6 +27,7 @@ export const config = {
         '/api/profile/update',
         '/api/profile/delete',
         '/api/donationHistory',
+        '/api/profile',
         '/dashboard/:path*'
     ]
 }
