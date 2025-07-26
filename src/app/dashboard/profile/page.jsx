@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 export default function ProfilePage() {
   const [donor, setDonor] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [view, setView] = useState("details"); // details | update
+  const [view, setView] = useState("details");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -55,7 +55,6 @@ export default function ProfilePage() {
   async function handleUpdate(e) {
     e.preventDefault();
     setUpdating(true);
-
     try {
       const payload = {
         name: formData.name,
@@ -108,151 +107,101 @@ export default function ProfilePage() {
   if (!donor) return <p className="text-center mt-10 text-red-600">Profile not found.</p>;
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow space-y-6">
-      <h1 className="text-3xl font-bold mb-6">My Profile</h1>
+    <div className="md:ml-64 px-4 py-8 min-h-screen bg-gray-100">
+      <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow space-y-6">
+        <h1 className="text-3xl font-bold mb-6 text-center md:text-left">My Profile</h1>
 
-      {/* Buttons */}
-      <div className="flex gap-4 mb-6">
-        <button
-          onClick={() => setView("details")}
-          className={`px-4 py-2 rounded ${
-            view === "details" ? "bg-blue-600 text-white" : "bg-gray-200"
-          }`}
-        >
-          Profile Details
-        </button>
-        <button
-          onClick={() => setView("update")}
-          className={`px-4 py-2 rounded ${
-            view === "update" ? "bg-blue-600 text-white" : "bg-gray-200"
-          }`}
-        >
-          Profile Update
-        </button>
-        <button
-          onClick={handleDelete}
-          disabled={deleting}
-          className={`px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 ${
-            deleting ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-        >
-          {deleting ? "Deleting..." : "Profile Delete"}
-        </button>
-      </div>
-
-      {/* View Content */}
-      {view === "details" && (
-        <div className="space-y-3">
-          <p><strong>Name:</strong> {donor.name}</p>
-          <p><strong>Email:</strong> {donor.email}</p>
-          <p><strong>Phone:</strong> {donor.phone}</p>
-          <p><strong>Blood Group:</strong> {donor.bloodGroup}</p>
-          <p><strong>Location:</strong> {donor.upazila}, {donor.district}, {donor.city}</p>
-        </div>
-      )}
-
-      {view === "update" && (
-        <form onSubmit={handleUpdate} className="space-y-4 max-w-md">
-          <div>
-            <label className="block mb-1 font-semibold">Name</label>
-            <input
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded px-3 py-2"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1 font-semibold">Phone</label>
-            <input
-              name="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-              pattern="(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$"
-              title="Valid Bangladeshi phone number"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1 font-semibold">Blood Group</label>
-            <input
-              name="bloodGroup"
-              type="text"
-              value={formData.bloodGroup}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded px-3 py-2"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1 font-semibold">District</label>
-            <input
-              name="district"
-              type="text"
-              value={formData.district}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded px-3 py-2"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1 font-semibold">Upazila</label>
-            <input
-              name="upazila"
-              type="text"
-              value={formData.upazila}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded px-3 py-2"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1 font-semibold">City</label>
-            <input
-              name="city"
-              type="text"
-              value={formData.city}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded px-3 py-2"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1 font-semibold">
-              Password <span className="text-sm text-gray-500">(Leave blank to keep current)</span>
-            </label>
-            <input
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="New password"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              minLength={6}
-            />
-          </div>
-
+        {/* Buttons */}
+        <div className="flex flex-wrap gap-4 mb-6 justify-center md:justify-start">
           <button
-            type="submit"
-            disabled={updating}
-            className={`w-full py-2 rounded text-white font-semibold ${
-              updating ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            onClick={() => setView("details")}
+            className={`px-4 py-2 rounded ${
+              view === "details" ? "bg-blue-600 text-white" : "bg-gray-200"
             }`}
           >
-            {updating ? "Updating..." : "Update Profile"}
+            Profile Details
           </button>
-        </form>
-      )}
+          <button
+            onClick={() => setView("update")}
+            className={`px-4 py-2 rounded ${
+              view === "update" ? "bg-blue-600 text-white" : "bg-gray-200"
+            }`}
+          >
+            Profile Update
+          </button>
+          <button
+            onClick={handleDelete}
+            disabled={deleting}
+            className={`px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 ${
+              deleting ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          >
+            {deleting ? "Deleting..." : "Profile Delete"}
+          </button>
+        </div>
+
+        {/* View Content */}
+        {view === "details" && (
+          <div className="space-y-3 text-sm sm:text-base">
+            <p><strong>Name:</strong> {donor.name}</p>
+            <p><strong>Email:</strong> {donor.email}</p>
+            <p><strong>Phone:</strong> {donor.phone}</p>
+            <p><strong>Blood Group:</strong> {donor.bloodGroup}</p>
+            <p><strong>Location:</strong> {donor.upazila}, {donor.district}, {donor.city}</p>
+          </div>
+        )}
+
+        {view === "update" && (
+          <form onSubmit={handleUpdate} className="space-y-4 max-w-md w-full mx-auto">
+            {[
+              { label: "Name", name: "name", type: "text", required: true },
+              { label: "Phone", name: "phone", type: "tel", required: true },
+              { label: "Blood Group", name: "bloodGroup", type: "text", required: true },
+              { label: "District", name: "district", type: "text", required: true },
+              { label: "Upazila", name: "upazila", type: "text", required: true },
+              { label: "City", name: "city", type: "text", required: true },
+            ].map(({ label, name, type, required }) => (
+              <div key={name}>
+                <label className="block mb-1 font-semibold">{label}</label>
+                <input
+                  name={name}
+                  type={type}
+                  value={formData[name]}
+                  onChange={handleChange}
+                  required={required}
+                  className="w-full border border-gray-300 rounded px-3 py-2"
+                />
+              </div>
+            ))}
+
+            <div>
+              <label className="block mb-1 font-semibold">
+                Password{" "}
+                <span className="text-sm text-gray-500">(Leave blank to keep current)</span>
+              </label>
+              <input
+                name="password"
+                type="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="New password"
+                className="w-full border border-gray-300 rounded px-3 py-2"
+                minLength={6}
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={updating}
+              className={`w-full py-2 rounded text-white font-semibold ${
+                updating ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+              }`}
+            >
+              {updating ? "Updating..." : "Update Profile"}
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 }
