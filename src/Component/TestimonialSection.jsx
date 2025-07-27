@@ -17,7 +17,7 @@ const testimonials = [
     image: 'https://i.imgur.com/NOlfLiX.jpg',
   },
   {
-    name: 'Sibgatul Rahman Pranto',
+    name: 'Sebgatur Rahman Pranto',
     role: 'Regular Donor',
     story: 'Donating blood is a responsibility I feel proud of. It’s easy and life-changing.',
     image: 'https://i.imgur.com/poWnRKr.jpg',

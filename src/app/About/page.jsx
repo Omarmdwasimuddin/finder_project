@@ -11,7 +11,7 @@ const teamMembers = [
     image: '/Img/Wasim.png',
   },
   {
-    name: 'Sebgatul Pranto',
+    name: 'Sebgatur Rahman Pranto',
     role: 'Idea Maker',
     image: '/Img/prantoimg.jpg',
   },
