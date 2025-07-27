@@ -67,21 +67,21 @@ export default function BloodDonationSection() {
             title="Want to donate for the first time?"
             description="Let us take you through the steps to becoming a blood donor and the process of getting that first appointment booked."
             buttonText="Your steps to donation"
-            buttonLink="#"
+            buttonLink="/donation-process/first-time-donors"
             imageSrc="/Img/donor01.jpeg"
           />
           <DonationCard
             title="Who can give blood?"
             description="As long as you are fit and healthy, you should be able to give blood. Check if you meet the requirements to donate."
             buttonText="Discover if you're eligible"
-            buttonLink="#"
+            buttonLink="/eligibility"
             imageSrc="/Img/donor03.jpeg"
           />
           <DonationCard
             title="It's in your blood to save lives"
             description="Your blood is made up of red cells, plasma and platelets. Find out how each of these can help someone in need."
             buttonText="How your blood could help"
-            buttonLink="#"
+            buttonLink="/why-give-blood/who-you-could-help"
             imageSrc="/Img/donor02.jpeg"
           />
         </div>
