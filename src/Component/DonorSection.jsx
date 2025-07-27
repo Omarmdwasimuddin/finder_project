@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 import React from 'react';
 
 // Reusable Donation Card Component
 const DonationCard = ({ title, description, buttonText, buttonLink, imageSrc }) => {
   return (
-    <div className="group p-6 bg-white rounded-lg shadow-md flex flex-col h-full transition-all duration-300 hover:shadow-lg">
+    <div className="group p-6 bg-white rounded-lg shadow-md flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
       {imageSrc && (
         <img
           src={imageSrc}
@@ -14,12 +14,14 @@ const DonationCard = ({ title, description, buttonText, buttonLink, imageSrc }) 
         />
       )}
       <div className="flex-1">
-        <h3 className="text-lg md:text-xl font-semibold mb-2 text-gray-800">{title}</h3>
+        <h3 className="text-lg md:text-xl font-semibold mb-2 text-gray-800">
+          {title}
+        </h3>
         <p className="text-sm text-gray-600 mb-4">{description}</p>
       </div>
       <a
         href={buttonLink}
-        className="mt-auto inline-block px-4 py-2 rounded text-red-600 font-medium transition-all duration-300 ease-in-out group-hover:bg-red-600 group-hover:text-white"
+        className="mt-auto inline-block px-4 py-2 rounded border border-red-600 text-red-600 font-medium transition-all duration-300 ease-in-out group-hover:bg-red-600 group-hover:text-white group-hover:shadow-lg"
       >
         ➤ {buttonText}
       </a>
@@ -27,25 +29,28 @@ const DonationCard = ({ title, description, buttonText, buttonLink, imageSrc }) 
   );
 };
 
-
 // Special Sign-Up Card
 const SignUpCard = () => {
   return (
-    <div className="bg-[#fce3df] p-6 rounded-lg text-center flex flex-col h-full transition-all duration-300 hover:shadow-lg">
+    <div className="bg-[#fce3df] p-6 rounded-lg text-center flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
       <img
         src="/Img/donateIcon.png"
         alt="Become a blood donor"
         className="w-full h-40 object-cover rounded-md mb-4"
       />
       <div className="flex-1">
-        <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">Become a blood donor</h3>
-        <p className="text-gray-600 mb-4 text-sm md:text-base">Save up to 3 lives in 1 hour.</p>
+        <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">
+          Become a Hero – Donate Blood
+        </h3>
+        <p className="text-gray-600 mb-4 text-sm md:text-base">
+          Save up to 3 lives in 1 hour.
+        </p>
       </div>
       <a
         href="#"
-        className="inline-block bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded mt-auto text-sm md:text-base"
+        className="inline-block bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded mt-auto text-sm md:text-base transition-all duration-300 shadow-md hover:shadow-lg"
       >
-        Sign up to give blood
+        Find Donors Near You
       </a>
     </div>
   );

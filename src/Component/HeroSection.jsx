@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const containerStyle = {
   width: "100%",
-  height: "400px",
+  height: "100%", // full height for responsiveness
 };
 
 const center = {
@@ -53,19 +53,31 @@ const HeroSection = () => {
   }, [displayText, isTyping, currentMessageIndex]);
 
   return (
-    <section className="relative bg-gradient-to-br from-red-50 to-red-100 text-red-600 py-16 md:py-24 overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
-        <h1 className="text-2xl md:text-4xl font-bold text-center mb-1 min-h-[72px]">
+    <section className="relative py-20 md:py-28 overflow-hidden text-white min-h-[100vh] flex items-center">
+      {/*Background Image */}
+      <div
+        className="absolute inset-0 bg-center bg-cover brightness-[0.4] blur-[1px]"
+        style={{
+          backgroundImage: "url('https://i.imgur.com/AyKAK1O.jpg')",
+        }}
+      ></div>
+
+      {/*Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-red-800/50 to-black/70 mix-blend-multiply"></div>
+
+      {/*Content */}
+      <div className="relative z-10 container mx-auto px-4">
+        <h1 className="text-3xl md:text-5xl font-bold text-center mb-3 min-h-[80px] leading-snug">
           {displayText}
-          <span className="animate-pulse">|</span>
+          <span className="animate-pulse text-red-300">|</span>
         </h1>
-        <p className="text-sm md:text-xl text-center text-red-400 mb-8 max-w-2xl mx-auto">
+        <p className="text-base md:text-xl text-center text-gray-200 mb-10 max-w-2xl mx-auto">
           Join our network of blood donors and help save lives across Bangladesh.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Left: Google Map */}
-          <div className="w-full h-full rounded-lg shadow-lg overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          {/*Google Map */}
+          <div className="w-full h-[300px] md:h-[400px] rounded-xl shadow-lg overflow-hidden border border-white/10">
             <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
               <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
                 <Marker position={center} />
@@ -73,9 +85,8 @@ const HeroSection = () => {
             </LoadScript>
           </div>
 
-          {/* Right: Button with Heartbeat Background */}
-          <div className="relative flex flex-col items-center justify-center text-center">
-            {/* Heartbeat Image Animation Behind the Button */}
+          {/*CTA Button with Animated Heartbeat */}
+          <div className="relative flex flex-col items-center justify-center text-center h-full min-h-[200px]">
             <motion.div
               className="absolute w-[180px] h-[180px] md:w-[220px] md:h-[220px] bg-center bg-no-repeat bg-contain opacity-70"
               style={{ backgroundImage: "url('/Img/heartbeat.png')" }}
@@ -93,7 +104,7 @@ const HeroSection = () => {
 
             <Link
               href="/donor/signup"
-              className="relative px-8 py-4 text-white text-sm font-semibold rounded-full bg-red-600 shadow-lg transition-all duration-300 hover:scale-105 z-10"
+              className="relative px-8 py-4 text-white text-sm md:text-base font-semibold rounded-full bg-red-600 shadow-xl transition-all duration-300 hover:scale-105 z-10"
             >
               Sign Up to Donate
             </Link>

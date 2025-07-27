@@ -3,19 +3,19 @@ import Stats from '../Component/Stats';
 import HeroSection from '../Component/HeroSection';
 import PlainLayout from '@/Component/Plain-Layout';
 import DonorSection from '@/Component/DonorSection';
-
+import DonationInfoSection from '@/Component/DonationInfoSection';
+import TestimonialSection from '@/Component/TestimonialSection';
 
 
 
 export default function HomePage() {
   return (
     <PlainLayout>
-      {/* Hero Section */}
       <HeroSection/>
-      {/* Donor Section */}
       <DonorSection/>
-      {/* Stats Section */}
       <Stats/>
+      <DonationInfoSection />
+      <TestimonialSection />
     </PlainLayout>
   );
 }

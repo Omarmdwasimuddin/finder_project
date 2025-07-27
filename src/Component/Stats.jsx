@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { FaHeartbeat, FaUsers, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import LiveDonorTicker from '@/Component/LiveDonorTicker';
+import ImpactInNumbers from '@/Component/ImpactInNumbers';
 
 const fetchStats = async () => {
   return new Promise((resolve) => {
@@ -86,8 +88,11 @@ const StatsSection = () => {
         {/* Connecting Border */}
         <div className="w-24 h-1 bg-red-500 mx-auto mb-10 rounded"></div>
 
+        <ImpactInNumbers/>
+        <LiveDonorTicker />
+
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center mt-5">
           {/* Lives Saved */}
           <div className="p-4 border border-red-200 rounded-md bg-white shadow-sm">
             <FaHeartbeat className="text-red-500 text-3xl mx-auto mb-3" />
