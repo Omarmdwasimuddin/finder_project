@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import PlainLayout from "@/Component/Layout/PlainLayout";
+import PlainLayout from "@/Component/Plain-Layout";
 import OTPVerifyPage from "@/Component/OtpVerification";
 
 export default function Page() {
