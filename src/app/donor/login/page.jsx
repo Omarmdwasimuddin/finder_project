@@ -8,7 +8,8 @@ import { ErrorToast, SuccessToast } from "@/utility/FormHelper";
 import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useState } from "react";
-import "./login.css"; 
+import Link from "next/link";
+import "./login.css";
 
 const schema = yup.object({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -21,7 +22,11 @@ const schema = yup.object({
 export default function LoginPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const {register,handleSubmit,formState: { errors, isSubmitting },} = useForm({ resolver: yupResolver(schema) });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = async (data) => {
     try {
@@ -80,6 +85,16 @@ export default function LoginPage() {
             </button>
           </div>
           <p className="text-red-500 text-sm mt-1">{errors.password?.message}</p>
+        </div>
+
+        {/* Forgot Password + Sign Up */}
+        <div className="mb-4 flex justify-between text-sm">
+          <Link href="/donor/forgot-password" className="text-red-500 hover:underline">
+            Forgot Password?
+          </Link>
+          <Link href="/donor/signup" className="text-red-500 hover:underline">
+            Sign Up
+          </Link>
         </div>
 
         {/* Submit Button */}
