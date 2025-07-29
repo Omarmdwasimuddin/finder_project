@@ -1,10 +1,10 @@
 import React from 'react';
-import resetPassword from '@/Component/resetPassword';
+import ResetPassword from '@/Component/ResetPassword';
 
 const page = () => {
   return (
     <div>
-      <resetPassword/>
+      <ResetPassword/>
     </div>
   );
 };
