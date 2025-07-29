@@ -1,4 +1,4 @@
-import VerifyOTP from '@/Component/VerifyOTP';
+import VerifyOTP from '@/Component/Verify-OTP';
 
 export default function Page() {
   return <VerifyOTP />;
