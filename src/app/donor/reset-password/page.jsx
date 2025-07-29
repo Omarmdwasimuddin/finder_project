@@ -1,5 +1,11 @@
-import ResetPassword from '@/Component/ResetPassword';
+import PasswordReset from '@/Component/PasswordReset';
+import PlainLayout from '@/Component/Plain-Layout';
 
 export default function Page() {
-  return <ResetPassword />;
+  return (
+    <PlainLayout>
+      <PasswordReset />
+    </PlainLayout>
+  );
 }
+

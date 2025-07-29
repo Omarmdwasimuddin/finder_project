@@ -1,5 +1,11 @@
-import ForgotPassword from '@/Component/ForgotPassword';
+import EmailVerification from '@/Component/EmailVerification';
+import PlainLayout from '@/Component/Plain-Layout';
 
 export default function Page() {
-  return <ForgotPassword />;
+  return (
+    <PlainLayout>
+      <EmailVerification />
+    </PlainLayout>
+  );
 }
+

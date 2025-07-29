@@ -1,5 +1,11 @@
-import VerifyOTP from '@/Component/VerifyOTP';
+import OtpVerification from '@/Component/OtpVerification';
+import PlainLayout from '@/Component/Plain-Layout';
 
 export default function Page() {
-  return <VerifyOTP />;
+  return (
+    <PlainLayout>
+      <OtpVerification />
+    </PlainLayout>
+  );
 }
+
