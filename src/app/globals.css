@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+
+.leaflet-control {
+  z-index: 1000;
+}
